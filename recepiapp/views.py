@@ -16,5 +16,4 @@ def recipe_view(request):
         recipe = get_recipe_from_groq(ingredients)
         print("Recipe from Groq:", recipe)
     return render(request, "base.html", {"recipe": recipe})
-    # else:
-    #     print("Error....")
+  

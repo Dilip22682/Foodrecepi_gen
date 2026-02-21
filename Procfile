@@ -1,0 +1,1 @@
+web: gunicorn Foodrecepi_gen.wsgi

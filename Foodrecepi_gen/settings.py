@@ -25,8 +25,10 @@ SECRET_KEY = 'django-insecure-zc=9f)2q_$^d42r$wu2p4-pgcl%cg%p1cux=%!*fq3$ub)m)zg
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False   # for production
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,7 +121,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+import os
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -126,8 +131,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #fetchin data from Groq Api
-# GROQ_API_KEY = "your_groq_api_key"
+ 
+from dotenv import load_dotenv
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "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")
+load_dotenv()
+
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+# GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 
